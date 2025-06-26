@@ -39,17 +39,18 @@ with col1:
     predict_button = st.button("🔍 Prediksi Kebutuhan Energi")
 
 # --- Kolom output (kanan)
+# --- Kolom output (kanan)
 with col2:
     st.subheader("Hasil Prediksi")
 
     if predict_button:
-    try:
-        input_data = np.array([[X1, X2, X3, X4, X5, X6, X7, X8]])
-        prediction = model.predict(input_data)[0]  # hasilnya string 'Rendah' dst
+        try:
+            input_data = np.array([[X1, X2, X3, X4, X5, X6, X7, X8]])
+            prediction = model.predict(input_data)[0]  # hasilnya string 'Rendah' dst
 
-        st.metric(label="Kategori Energi", value=prediction)
-        st.success(f"Prediksi Model: **{prediction}**")
+            st.metric(label="Kategori Energi", value=prediction)
+            st.success(f"Prediksi Model: **{prediction}**")
 
-    except Exception as e:
-        st.error("❌ Gagal menjalankan prediksi.")
-        st.exception(e)
+        except Exception as e:
+            st.error("❌ Gagal menjalankan prediksi.")
+            st.exception(e)
