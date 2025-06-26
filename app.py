@@ -43,21 +43,13 @@ with col2:
     st.subheader("Hasil Prediksi")
 
     if predict_button:
-        try:
-            input_data = np.array([[X1, X2, X3, X4, X5, X6, X7, X8]])
-            prediction = float(model.predict(input_data)[0])  # pastikan tipe numerik
+    try:
+        input_data = np.array([[X1, X2, X3, X4, X5, X6, X7, X8]])
+        prediction = model.predict(input_data)[0]  # hasilnya string 'Rendah' dst
 
-            # Kategorisasi nilai energi
-            if prediction < 15:
-                label = "Rendah"
-            elif prediction < 30:
-                label = "Sedang"
-            else:
-                label = "Tinggi"
+        st.metric(label="Kategori Energi", value=prediction)
+        st.success(f"Prediksi Model: **{prediction}**")
 
-            st.metric(label="Nilai Prediksi", value=f"{prediction:.2f}")
-            st.success(f"Kategori Energi: **{label}**")
-
-        except Exception as e:
-            st.error("❌ Gagal menjalankan prediksi.")
-            st.exception(e)
+    except Exception as e:
+        st.error("❌ Gagal menjalankan prediksi.")
+        st.exception(e)
